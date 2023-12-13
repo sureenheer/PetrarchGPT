@@ -20,4 +20,4 @@ First, I transform each poem into a text embedding, which is a vector representa
 1. PetrarchGPT.py (the main program)
 2. poem_data.json (processed poems in JSON format)
 3. process_poems.py (code used to process the poems)
-4. the_canzoniere.txt (the TXT file I cleaned up from Peter Sadlon's website)
+4. poems.txt (the TXT file I cleaned up from Peter Sadlon's website)
