@@ -1,5 +1,23 @@
 # PetrarchGPT
 
-PetrarchGPT is a semantic search engine that accepts any text input and outputs which one of Petrarch’s 366 poems most closely resembles this input along with a similarity score. I will now explain the general process for developing the Python program and how it works. I had a difficult time finding a reliable source for all 366 poems in one “.txt” file. After all, it would be really difficult to create a list of all the poems if I picked them one by one. There were two problems I had when gathering the data: the poems are written in Italian and ensuring that all the poems are translated by the same person in order to control for as much variance as possible. Fortunately, I found a website (Sadlon 2007) that allowed me to download all the poems from the Canzoniere into one “.txt” file and these poems are translated into English by Tony S. Kline, who, based on his credentials, seems like a reliable translator (Kline 2023). 
-Once I had all the poems in the text file, I had to clean up the data because it was formatted in a way that would make it difficult for me to process the file. Therefore, I did some work with regular expressions to get the poems formatted properly. There is a header line for each poem formatted as “[Poem Number]. [Title]” and the rest of the lines are the actual text of the poems. After processing this text file into a JSON file where the keys are the poem titles and the values are the poem text. 
-Now, I will explain how the program works. First, I transform each poem into a text embedding, which is a vector representation of the text. I use the BAAI/bge-large-zh-v1.5 sentence transformer model by FlagEmbedding to create these embeddings. The main benefits of using this model are that it is low-dimensional, which allows for faster computations, and it is open-source, which allows me to publish this program online without being charged every time someone uses the program. When a user inputs some text in the terminal, this text is transformed into an embedding and then this embedding is compared against all the other embeddings of the poems. The cosine similarity between the input embedding and each poem embedding is calculated. The five poems with the highest similarity scores are outputted in the terminal along with the poem text.
+## Description:
+
+PetrarchGPT is a semantic search engine that accepts any text input and outputs which one of Petrarch’s 366 poems most closely resembles this input along with a similarity score. The poems are taken from Peter Sadlon's website (https://petrarch.petersadlon.com/canzoniere.html) and processed into a JSON file. All the poems are translated from Italian to English by A.S. Kline. 
+
+## General Overview of the program
+
+First, I transform each poem into a text embedding, which is a vector representation of the text. I use the BAAI/bge-large-zh-v1.5 sentence transformer model by FlagEmbedding to create these embeddings. When a user inputs some text in the terminal, this text is transformed into an embedding and then this embedding is compared against all the other embeddings of the poems. The cosine similarity between the input embedding and each poem embedding is calculated. The five poems with the highest similarity scores are outputted in the terminal along with the poem text.
+
+## How to run this program
+
+1. Download the PetrarchGPT directory.
+2. Then, on your terminal, navigate to the PetrarchGPT directory.
+3. Type the following command: python3 PetrarchGPT.py (assumes you have python installed on computer)
+4. Follow the command prompt and enter your input.
+
+## Files in the PetrarchGPT directory:
+
+1. PetrarchGPT.py (the main program)
+2. poem_data.json (processed poems in JSON format)
+3. process_poems.py (code used to process the poems)
+4. the_canzoniere.txt (the TXT file I cleaned up from Peter Sadlon's website)
